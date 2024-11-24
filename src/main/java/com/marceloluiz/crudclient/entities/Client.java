@@ -23,6 +23,6 @@ public class Client {
     private Double income;
     @Column(name = "birth_date", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private LocalDate birtDate;
-    private Integer Children;
+    private Integer children;
 
 }
