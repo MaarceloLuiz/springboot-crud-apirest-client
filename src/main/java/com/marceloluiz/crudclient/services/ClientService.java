@@ -24,4 +24,34 @@ public class ClientService {
         Client client = repository.findById(id).get();
         return new ClientDTO(client);
     }
+
+    @Transactional
+    public ClientDTO insert(ClientDTO dto){
+        Client client = new Client();
+        copyDtoToEntity(client, dto);
+
+        client = repository.save(client);
+        return new ClientDTO(client);
+    }
+
+    @Transactional
+    public ClientDTO update(Long id, ClientDTO dto){
+        Client client = repository.getReferenceById(id);
+        copyDtoToEntity(client, dto);
+
+        return new ClientDTO(client);
+    }
+
+    @Transactional
+    public void delete(Long id){
+        repository.deleteById(id);
+    }
+
+    private void copyDtoToEntity(Client entity, ClientDTO dto) {
+        entity.setName(dto.getName() != null ? dto.getName() : entity.getName());
+        entity.setCpf(dto.getCpf() != null ? dto.getCpf() : entity.getCpf());
+        entity.setBirtDate(dto.getBirtDate() != null ? dto.getBirtDate() : entity.getBirtDate());
+        entity.setChildren(dto.getChildren() != null ? dto.getChildren() : entity.getChildren());
+
+    }
 }
