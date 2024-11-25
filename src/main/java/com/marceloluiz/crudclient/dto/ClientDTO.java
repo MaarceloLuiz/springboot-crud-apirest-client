@@ -25,7 +25,7 @@ public class ClientDTO {
     @Positive(message = "The price must be positive")
     private Double income;
 
-    @NotNull
+    @NotNull(message = "Birth date shouldn't be null")
     @PastOrPresent(message = "Birth date cannot be in the future")
     private LocalDate birtDate;
 
